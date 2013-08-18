@@ -5,3 +5,10 @@
   - Click Generate
   - Right click on "Header Files" in the project view. New C Header File > config.h
   - Paste the stuff from the output file into the main body (Line 15) of config.h (See checked in file)
+- Create basic program
+  - Right click on Source Files > New C Source File > main.c
+  - Include config.h in main. Since it is in the project use "" instead of <>. <> is for things on the path (libraries).
+  - Create main function. This is what is called as the entrypoint to a c program.
+  - Click the hammer and make sure it compiles. You will see red if it doesn't. You can diff with this commit if you need to see what you have wrong.
+  - Now we'll have a bunch of extra stuff in the directory. We should add these to .gitignore. Just check the file in this commit for what you need.
+
