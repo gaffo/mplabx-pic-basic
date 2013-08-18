@@ -42,4 +42,7 @@ Blink One Light
         - Watch fOn toggle and RA0 in the analyzer toggle
     - In variables you can add a watch for all of PORTA by clicking the + over the diamond on the left of the variables
         - Choose SFRs, and choose PORTA
+Slow Things Down
+    - In config.h, define _XTAL_FREQ to be 8,000,000 (8MHZ), so that delay functions work. I believe this means Crystal Frequency.
+    - In main at the end, we do a __delay_ms(100), to sleep for 1/10th of a second.
     

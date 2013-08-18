@@ -25,6 +25,8 @@ extern "C" {
 #pragma config IOSCFS = 8MHZ    // Internal Oscillator Frequency Select bit (8 MHz)
 #pragma config BOREN = ON       // Brown-out Reset Selection bits (BOR enabled)
 
+#define _XTAL_FREQ 8000000      // Declare crystal frequency to be 8MHZ (for delay functions)
+
 #ifdef	__cplusplus
 }
 #endif

@@ -20,5 +20,9 @@ void main()
         fOn = !fOn;
 
         PORTA = fOn;
+
+        // Wait 100 millisconds (1/10th of a second)
+        
+        __delay_ms(100);
     }
 }
