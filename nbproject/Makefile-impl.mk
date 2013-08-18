@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=MPLABXProjects
+PROJECTNAME=mplabx-pic-basics
 
 # Active Configuration
 DEFAULTCONF=default

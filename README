@@ -1,1 +1,7 @@
 - Created a basic project with PIC16F616 and X8 as the compiler. That created this folder.
+- Set Internal Oscillator:
+  - Window > Pic Memory Views > Configuration Bits
+  - Set FOSC to INTOSCCLK
+  - Click Generate
+  - Right click on "Header Files" in the project view. New C Header File > config.h
+  - Paste the stuff from the output file into the main body (Line 15) of config.h (See checked in file)
