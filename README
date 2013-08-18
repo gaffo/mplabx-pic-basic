@@ -1,14 +1,45 @@
-- Created a basic project with PIC16F616 and X8 as the compiler. That created this folder.
-- Set Internal Oscillator:
-  - Window > Pic Memory Views > Configuration Bits
-  - Set FOSC to INTOSCCLK
-  - Click Generate
-  - Right click on "Header Files" in the project view. New C Header File > config.h
-  - Paste the stuff from the output file into the main body (Line 15) of config.h (See checked in file)
-- Create basic program
-  - Right click on Source Files > New C Source File > main.c
-  - Include config.h in main. Since it is in the project use "" instead of <>. <> is for things on the path (libraries).
-  - Create main function. This is what is called as the entrypoint to a c program.
-  - Click the hammer and make sure it compiles. You will see red if it doesn't. You can diff with this commit if you need to see what you have wrong.
-  - Now we'll have a bunch of extra stuff in the directory. We should add these to .gitignore. Just check the file in this commit for what you need.
-
+Created a basic project with PIC16F616 and X8 as the compiler. That created this folder.
+Set Internal Oscillator:
+    - Window > Pic Memory Views > Configuration Bits
+    - Set FOSC to INTOSCCLK
+    - Click Generate
+    - Right click on "Header Files" in the project view. New C Header File > config.h
+    - Paste the stuff from the output file into the main body (Line 15) of config.h (See checked in file)
+Create basic program
+    - Right click on Source Files > New C Source File > main.c
+    - Include config.h in main. Since it is in the project use "" instead of <>. <> is for things on the path (libraries).
+    - Create main function. This is what is called as the entrypoint to a c program.
+    - Click the hammer and make sure it compiles. You will see red if it doesn't. You can diff with this commit if you need to see what you have wrong.
+    - Now we'll have a bunch of extra stuff in the directory. We should add these to .gitignore. Just check the file in this commit for what you need.
+Blink One Light
+    - C doesn't have a boolean so we're just going to use a unsigned char. We set it to 0
+    - We need to tell PortA, Pin 0 (RA0), to be output, since this is where we are going to put our light on this.
+        - We do this with the TRISA flag, this is setting all of the other pins to input (1), and the last one (RA0) to output (0).
+        - We could have also done TRISAbits.TRISA0 = 0
+    - Looping forever "while (1)"
+        - flop our "boolean" with "fOn = !fOn"
+        - Output the toggle to PORTA. This actually takes all 8 bits of the toggle and sets them to the bits of PORTA. But we only care about the first bit.
+    - Now compile with the hammer
+    - We should run on the simulator to see what's happening.
+    - First click on the line numbers to the left of the "PORTA = fOn;" line. This will add a breakpoint.
+    - Now run on the simulator by going to the "Debug > Debug project" menu item. Choose to run on the simulator.
+    - This will run the project and it will hit the breakpoint we set.
+    - Bring up the variables window with "Window > Debugging > Variables"
+        - Notice that
+            - PORTA is 0x00
+            - fOn = 0x1 (since we've toggled it once)
+    - Bring up the analyzer window with "Window > Simulator > Analyzer"
+        - Click the microchip icon on the analyzer and add RA0, RA1, RA2, RA3, RA4, RA5.
+        - Notice that we've actually gone a few clock cycles (mine says 15). I believe this is the time it took to boot up and get to this part of the program.
+        - Notice all of the pins are at 0
+    - Step the debugger once with F8
+        - The "fOn = !fOn;" line should be green now.
+        - Notice that the RA0 line in the analyzer jumped up to 1
+    - Step again
+        - fOn should now be 0
+        - PORTA shouldn't change
+    - Run with F5. This will run till the next breakpoint
+        - Watch fOn toggle and RA0 in the analyzer toggle
+    - In variables you can add a watch for all of PORTA by clicking the + over the diamond on the left of the variables
+        - Choose SFRs, and choose PORTA
+    
